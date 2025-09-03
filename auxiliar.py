@@ -1,4 +1,5 @@
 import random
+import sys
 def lerArq(nome):
     try:
         f = open(nome, "r")
@@ -27,5 +28,11 @@ def gerarVetor(tamanho,modo):
     return vetor
 
 def escreverArq(linhas):
-    arq = open('output.txt', 'w')
-    for i in linhas: arq.write(i)
+    try:
+        arq = open(sys.argv[2], 'w')
+    except IndexError:
+        arq = open('output.txt', 'w')
+    finally:
+        for i in linhas:
+            i = i+'\n'
+            arq.write(i)
