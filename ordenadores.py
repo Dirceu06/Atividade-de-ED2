@@ -52,12 +52,6 @@ def insertionSort(lista):
     timer = fim-inicio
     return lista, comparacoes, timer
 
-
-desordem = [-66 , -28, 41, -87, 51, -17, -92, -22, 18, 9]
-insertionSort(desordem)
-print(desordem)
-
-
 def mergeSort(lista,inicio, fim):
     inicio = time.time()
     global comparacoesMergeSort
