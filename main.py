@@ -7,6 +7,9 @@ try:
     definicoes = auxiliar.lerArq(sys.argv[1])
 except IndexError:
     definicoes = auxiliar.lerArq('input.txt')
+    
+if definicoes == -1:
+    sys.exit('Encerrando programa com erro')
 gerado = auxiliar.gerarVetor(definicoes[0],definicoes[1])
 selection, compInfo, timer = ordenadores.selectionSort(gerado[:],definicoes[0])
 linhaSelection = f"Selection: {' '.join(map(str,selection ))} comparadorado: {compInfo} veze(s) tempo: {timer*1000000:.2f} microssegundos"
