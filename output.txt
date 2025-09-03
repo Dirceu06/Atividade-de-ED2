@@ -1,0 +1,2 @@
+Selection: 1 2 3 4 5 6 7 8 9 10 comparadorado: 54 veze(s) tempo: 22.17 microssegundos
+Bubble: 1 2 3 4 5 6 7 8 9 10 comparadorado: 100 veze(s) tempo: 24.32 microssegundos

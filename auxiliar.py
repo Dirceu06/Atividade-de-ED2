@@ -3,7 +3,11 @@ import sys
 def lerArq(nome):
     try:
         f = open(nome, "r")
-        numero = int(f.readline().strip())
+        try:
+            numero = int(f.readline().strip())
+        except ValueError:
+            print(f'Número no arquivo de entrada não é inteiro')
+            return -1
         caractere = f.readline().strip()
         f.close()
         info = (numero,caractere)
