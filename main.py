@@ -15,11 +15,17 @@ selection, compInfo, timer = ordenadores.selectionSort(gerado[:],definicoes[0])
 linhaSelection = f"Selection: {' '.join(map(str,selection ))} comparadorado: {compInfo} veze(s) tempo: {timer*1000000:.2f} microssegundos"
 bubble, compInfo, timer = ordenadores.bubbleSort(gerado[:])
 linhaBubble = f"Bubble: {' '.join(map(str,bubble ))} comparadorado: {compInfo} veze(s) tempo: {timer*1000000:.2f} microssegundos"
+insertion, compInfo, timer = ordenadores.insertionSort(gerado[:])
+linhaInsertion = f"Insertion: {' '.join(map(str,insertion ))} comparadorado: {compInfo} veze(s) tempo: {timer*1000000:.2f} microssegundos"
+merge, compInfo, timer = ordenadores.bubbleSort(gerado[:])
+linhaMerge = f"Merge: {' '.join(map(str,merge ))} comparadorado: {compInfo} veze(s) tempo: {timer*1000000:.2f} microssegundos"
 
 
 print(gerado)
 print(linhaSelection)
 print(linhaBubble)
+print(linhaInsertion)
+print(linhaMerge)
 
-linhas = [linhaSelection,linhaBubble]
+linhas = [linhaSelection,linhaBubble,linhaInsertion,linhaMerge]
 auxiliar.escreverArq(linhas)
