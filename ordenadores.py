@@ -171,3 +171,20 @@ def heapSort(lista):
 
     fim_tempo = time.time()
     return lista, comparacoesHeapSort, fim_tempo - inicio_tempo
+
+def cocktailSort(lista):
+    inicio_tempo = time.time()
+    comparacoesCocktail = 0
+    
+    for j in range(len(lista)):
+        for i in range(len(lista)-1):
+            if lista[len(lista)-1 - i] < lista[len(lista)-2 - i]:
+                comparacoesCocktail+=1
+                lista[len(lista)-1-i],lista[len(lista)-2-i] = lista[len(lista)-2-i],lista[len(lista)-1-i]
+            if lista[i] > lista[i+1]:
+                comparacoesCocktail+=1
+                lista[i],lista[i+1] = lista[i+1],lista[i]
+    
+    fim_tempo = time.time()
+    
+    return lista, comparacoesCocktail, fim_tempo - inicio_tempo

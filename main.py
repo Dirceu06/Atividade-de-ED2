@@ -30,6 +30,10 @@ if definicoes[0] < 15:
 
     heap, compInfo, timer = ordenadores.heapSort(gerado[:])
     linhaheap = f"heap: {' '.join(map(str,heap ))} comparadorado: {compInfo} veze(s) tempo: {timer*1000000:.2f} microssegundos"
+    
+    cocktail, compInfo, timer = ordenadores.cocktailSort(gerado[:])
+    linhacocktail = f"cocktail: {' '.join(map(str,cocktail))} comparadorado: {compInfo} veze(s) tempo: {timer*1000000:.2f} microssegundos"
+    
 else:
     selection, compInfo, timer = ordenadores.selectionSort(gerado[:],definicoes[0])
     linhaSelection = f"Selection - comparadorado: {compInfo} veze(s) tempo: {timer*1000000:.2f} microssegundos"
@@ -48,9 +52,12 @@ else:
 
     heap, compInfo, timer = ordenadores.heapSort(gerado[:])
     linhaheap = f"heap - comparadorado: {compInfo} veze(s) tempo: {timer*1000000:.2f} microssegundos"
+    
+    cocktail, compInfo, timer = ordenadores.cocktailSort(gerado[:])
+    linhacocktail = f"cocktail - comparadorado: {compInfo} veze(s) tempo: {timer*1000000:.2f} microssegundos"
 
 print(gerado)
-linhas = [linhaSelection,linhaBubble,linhaInsertion,linhaMerge,linhaQuick,linhaheap]
+linhas = [linhaSelection,linhaBubble,linhaInsertion,linhaMerge,linhaQuick,linhaheap,linhacocktail]
 for i in linhas: print(i)
 
 auxiliar.escreverArq(linhas)
