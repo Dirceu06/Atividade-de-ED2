@@ -43,6 +43,7 @@ def insertionSort(lista):
         k = i - 1
         aux = lista[i]
         while k >= 0:
+            comparacoes += 1  
             if aux < lista[k]:
                 comparacoes += 1  
                 lista[k+1] = lista[k]
@@ -177,16 +178,33 @@ def heapSort(lista):
 
 def cocktailSort(lista):
     inicio_tempo = time.time()
-    comparacoesCocktail = 0
+    comparacoes = 0
+    n = len(lista)
+    troca = True
+    inicio = 0
+    fim = n - 1
     
-    
-    for i in range(len(lista)-1):
-        comparacoesCocktail+=1
-        if lista[len(lista)-1 - i] < lista[len(lista)-2 - i]:
-            lista[len(lista)-1-i],lista[len(lista)-2-i] = lista[len(lista)-2-i],lista[len(lista)-1-i]
-        if lista[i] > lista[i+1]:
-            lista[i],lista[i+1] = lista[i+1],lista[i]
+    while troca:
+        troca = False
+        for i in range(inicio, fim):
+            comparacoes += 1
+            if lista[i] > lista[i + 1]:
+                lista[i], lista[i + 1] = lista[i + 1], lista[i]
+                troca = True
+        
+        if not troca:
+            break  
+            
+        troca = False
+        fim -= 1  
+        
+        for i in range(fim - 1, inicio - 1, -1):
+            comparacoes += 1
+            if lista[i] > lista[i + 1]:
+                lista[i], lista[i + 1] = lista[i + 1], lista[i]
+                troca = True
+                
+        inicio += 1  
     
     fim_tempo = time.time()
-    
-    return lista, comparacoesCocktail, fim_tempo - inicio_tempo
+    return lista, comparacoes, fim_tempo - inicio_tempo

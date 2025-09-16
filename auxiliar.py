@@ -46,7 +46,6 @@ def escreverArq(linhas):
 def formatar_linha_ordenacao(nome_algoritmo, resultado_ordenacao, qtd):
     vetor_ordenado, comp_info, timer = resultado_ordenacao
     
-   
     vetor_str = f"{' '.join(map(str, vetor_ordenado))}"
     if qtd < 10:
         linha = (f"{nome_algoritmo + ':':^10} {vetor_str} "
