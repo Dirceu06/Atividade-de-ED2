@@ -18,9 +18,10 @@ def bubbleSort(lista):
     timer = fim-inicio
     return lista, comparacoes, timer
 
-def selectionSort(lista, n):
+def selectionSort(lista):
     inicio = time.time() 
     comparacoes = 0
+    n = len(lista)
     
     for i in range(0, n-1):
         menor = i
@@ -41,11 +42,13 @@ def insertionSort(lista):
     for i in range(1,len(lista)):
         k = i - 1
         aux = lista[i]
-        while k >= 0 and aux < lista[k]:
-            comparacoes += 1
-            lista[k+1] = lista[k]
-            k -= 1
-        comparacoes += 1
+        while k >= 0:
+            if aux < lista[k]:
+                comparacoes += 1  
+                lista[k+1] = lista[k]
+                k -= 1
+            else:
+                break
         lista[k + 1] = aux
     fim = time.time()
     timer = fim-inicio

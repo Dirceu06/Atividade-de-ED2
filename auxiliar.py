@@ -37,6 +37,23 @@ def escreverArq(linhas):
     except IndexError:
         arq = open('output.txt', 'w')
     finally:
+        arq.write('-='*38+'-\n')
         for i in linhas:
             i = i+'\n'
             arq.write(i)
+        arq.write('-='*38+'-\n')
+        
+def formatar_linha_ordenacao(nome_algoritmo, resultado_ordenacao, qtd):
+    vetor_ordenado, comp_info, timer = resultado_ordenacao
+    
+   
+    vetor_str = f"{' '.join(map(str, vetor_ordenado))}"
+    if qtd < 10:
+        linha = (f"{nome_algoritmo + ':':^10} {vetor_str} "
+                f"comparadorado: {comp_info:^7} veze(s) | "
+                f"tempo: {timer * 1000000:^7.2f} microssegundos")
+    else:
+        linha = (f"{nome_algoritmo:^10}- "
+                f"comparadorado: {comp_info:^7} veze(s) | "
+                f"tempo: {timer * 1000000:^7.2f} microssegundos")
+    return linha
