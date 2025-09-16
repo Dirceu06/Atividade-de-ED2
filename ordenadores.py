@@ -1,4 +1,3 @@
-
 import time
 
 def bubbleSort(lista):
@@ -8,10 +7,8 @@ def bubbleSort(lista):
     troca = True
     j = len(lista)-1
     while(troca):
-        comparacoes += 1
         troca = False
         for i in  range(j):
-            comparacoes += 1    
             if lista[i] > lista[i+1]:
                 comparacoes += 1
                 lista[i],lista[i+1] = lista[i+1], lista[i]
@@ -24,17 +21,18 @@ def bubbleSort(lista):
 def selectionSort(lista, n):
     inicio = time.time() 
     comparacoes = 0
-    for i in range(0,n-1):
+    
+    for i in range(0, n-1):
         menor = i
-        for j in range(i, n):
-            comparacoes += 1
-            if lista[menor] > lista[j]:
+        for j in range(i+1, n):   
+            comparacoes += 1   
+            if lista[j] < lista[menor]:
                 menor = j
         if menor != i:
-            lista[menor],lista[i]=lista[i],lista[menor]
+            lista[menor], lista[i] = lista[i], lista[menor]
         
     fim = time.time()
-    timer = fim-inicio
+    timer = fim - inicio
     return lista, comparacoes, timer
 
 def insertionSort(lista):
@@ -47,27 +45,24 @@ def insertionSort(lista):
             comparacoes += 1
             lista[k+1] = lista[k]
             k -= 1
+        comparacoes += 1
         lista[k + 1] = aux
     fim = time.time()
     timer = fim-inicio
     return lista, comparacoes, timer
 
-def mergeSort(lista,inicio, fim):
-    inicio = time.time()
+comparacoesMergeSort = 0
+
+def mergeSortVerdadeiro(lista, inicio, fim):
     global comparacoesMergeSort
+    
     if inicio < fim:
-        meio = (inicio+fim)//2
-        mergeSort(lista,inicio, meio)
-        mergeSort(lista, meio+1, fim)
-        
-        merge(lista, inicio,meio, fim)
-    fim = time.time()
-    timer = fim-inicio
-    return lista, comparacoesMergeSort, timer
+        meio = (inicio + fim) // 2
+        mergeSortVerdadeiro(lista, inicio, meio)
+        mergeSortVerdadeiro(lista, meio + 1, fim)
+        merge(lista, inicio, meio, fim)
 
-
-
-def merge(lista, inicio,meio, fim):
+def merge(lista, inicio, meio, fim):
     global comparacoesMergeSort
     aux = []
     p1 = inicio
@@ -88,3 +83,91 @@ def merge(lista, inicio,meio, fim):
     for i in range(len(aux)):
         lista[inicio + i] = aux[i]
 
+def mergeSort(lista):
+    global comparacoesMergeSort
+    comparacoesMergeSort = 0
+    
+    inicio_tempo = time.time()
+    mergeSortVerdadeiro(lista, 0, len(lista) - 1)
+    fim_tempo = time.time()
+    
+    return lista, comparacoesMergeSort, fim_tempo - inicio_tempo
+
+def quick(vetor):
+    global comparacoesQuickSort
+    comparacoesQuickSort = 0
+    inicio_tempo = time.time()
+    quickVerdadeiro(vetor,0,len(vetor)-1)
+    fim_tempo = time.time()
+    
+    return vetor, comparacoesQuickSort, fim_tempo - inicio_tempo
+    
+def quickVerdadeiro(vetor,inicio,fim):
+    if inicio < fim:
+        pivo = particiona(vetor,inicio,fim)
+        quickVerdadeiro(vetor,inicio,pivo-1)
+        quickVerdadeiro(vetor,pivo+1,fim)
+        
+def particiona(vetor,inicio,fim):
+    global comparacoesQuickSort
+    esquerda = inicio
+    direita = fim
+    pivo = vetor[inicio]
+   
+    while esquerda < direita:
+        while esquerda < fim and vetor[esquerda] <= pivo:
+            comparacoesQuickSort+=1
+            esquerda+=1
+            
+        while  direita > inicio and vetor[direita] > pivo:
+            comparacoesQuickSort+=1
+            direita-=1
+            
+        if esquerda < direita:
+            vetor[esquerda],vetor[direita]=vetor[direita],vetor[esquerda]
+            
+    vetor[inicio],vetor[direita]=vetor[direita],vetor[inicio]
+    return direita
+
+comparacoesHeapSort = 0
+
+def maxHeapfy(lista, i, n, ):
+    global comparacoesHeapSort
+    esquerda = 2*i + 1
+    direita = 2*i + 2
+    maior = i
+
+    
+    if esquerda < n:
+        comparacoesHeapSort += 1
+        if lista[esquerda] > lista[maior]:
+            maior = esquerda
+    if direita < n:
+        comparacoesHeapSort += 1
+        if lista[direita] > lista[maior]:
+            maior = direita
+
+    if maior != i:
+        lista[i], lista[maior] = lista[maior], lista[i]
+        maxHeapfy(lista, maior, n, )
+
+
+def buildMaxHeap(lista, ):
+    n = len(lista)
+    for i in range((n // 2) - 1, -1, -1):
+        maxHeapfy(lista, i, n, )
+
+
+def heapSort(lista):
+    global comparacoesHeapSort
+    comparacoesHeapSort = 0
+    inicio_tempo = time.time()
+
+    n = len(lista)
+    buildMaxHeap(lista, )
+    for i in range(n - 1, 0, -1):
+        lista[0], lista[i] = lista[i], lista[0]
+        maxHeapfy(lista, 0, i, )
+
+    fim_tempo = time.time()
+    return lista, comparacoesHeapSort, fim_tempo - inicio_tempo
