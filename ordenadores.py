@@ -9,8 +9,8 @@ def bubbleSort(lista):
     while(troca):
         troca = False
         for i in  range(j):
+            comparacoes += 1
             if lista[i] > lista[i+1]:
-                comparacoes += 1
                 lista[i],lista[i+1] = lista[i+1], lista[i]
                 troca = True
         j -= 1
@@ -176,14 +176,13 @@ def cocktailSort(lista):
     inicio_tempo = time.time()
     comparacoesCocktail = 0
     
-    for j in range(len(lista)):
-        for i in range(len(lista)-1):
-            if lista[len(lista)-1 - i] < lista[len(lista)-2 - i]:
-                comparacoesCocktail+=1
-                lista[len(lista)-1-i],lista[len(lista)-2-i] = lista[len(lista)-2-i],lista[len(lista)-1-i]
-            if lista[i] > lista[i+1]:
-                comparacoesCocktail+=1
-                lista[i],lista[i+1] = lista[i+1],lista[i]
+    
+    for i in range(len(lista)-1):
+        comparacoesCocktail+=1
+        if lista[len(lista)-1 - i] < lista[len(lista)-2 - i]:
+            lista[len(lista)-1-i],lista[len(lista)-2-i] = lista[len(lista)-2-i],lista[len(lista)-1-i]
+        if lista[i] > lista[i+1]:
+            lista[i],lista[i+1] = lista[i+1],lista[i]
     
     fim_tempo = time.time()
     
