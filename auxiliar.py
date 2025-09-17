@@ -49,10 +49,10 @@ def formatar_linha_ordenacao(nome_algoritmo, resultado_ordenacao, qtd):
     vetor_str = f"{' '.join(map(str, vetor_ordenado))}"
     if qtd < 10:
         linha = (f"{nome_algoritmo + ':':^10} {vetor_str} "
-                f"comparadorado: {comp_info:^7} veze(s) | "
+                f"comparadorado: {comp_info:^7} vez(es) | "
                 f"tempo: {timer * 1000000:^7.2f} microssegundos")
     else:
         linha = (f"{nome_algoritmo:^10}- "
-                f"comparadorado: {comp_info:^7} veze(s) | "
+                f"comparadorado: {comp_info:^7} vez(es) | "
                 f"tempo: {timer * 1000000:^7.2f} microssegundos")
     return linha
