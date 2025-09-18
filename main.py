@@ -3,7 +3,7 @@ import auxiliar
 import sys
 
 try:
-    definicoes = auxiliar.lerArq(sys.argv[1])
+    definicoes = auxiliar.lerArq(sys.argv)
 except IndexError:
     definicoes = auxiliar.lerArq('input.txt')
     

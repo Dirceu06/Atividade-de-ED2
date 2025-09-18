@@ -1,8 +1,10 @@
 import random
 import sys
 def lerArq(nome):
+    if len(nome[1]) != 3:
+        return -1
     try:
-        f = open(nome, "r")
+        f = open(nome[1], "r")
         try:
             numero = int(f.readline().strip())
         except ValueError:
