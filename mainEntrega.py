@@ -2,6 +2,7 @@ import random
 import sys
 def lerArq(nome):
     if len(nome) != 3:
+        print('número de argumentos inválido')
         return -1
     try:
         f = open(nome[1], "r")
