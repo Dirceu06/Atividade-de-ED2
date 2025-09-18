@@ -1,7 +1,7 @@
 import random
 import sys
 def lerArq(nome):
-    if len(nome[1]) != 3:
+    if len(nome) != 3:
         return -1
     try:
         f = open(nome[1], "r")
