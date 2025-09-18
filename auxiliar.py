@@ -16,6 +16,7 @@ def lerArq(nome):
         return info
     except FileNotFoundError:
         print('não existe o arquivo')
+        return -1
         
 def gerarVetor(tamanho,modo):
     vetor = list()
