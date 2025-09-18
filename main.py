@@ -2,10 +2,7 @@ import ordenadores
 import auxiliar
 import sys
 
-try:
-    definicoes = auxiliar.lerArq(sys.argv)
-except IndexError:
-    definicoes = auxiliar.lerArq('input.txt')
+definicoes = auxiliar.lerArq(sys.argv)
     
 if definicoes == -1:
     sys.exit('Encerrando programa com erro')
